@@ -1,89 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Privacy Policy - ATS CV Builder</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Privacy Policy for Career Craft — learn how we handle your data, cookies, and Google AdSense on our free ATS resume builder.">
+  <meta name="robots" content="index, follow">
+  <meta name="google-adsense-account" content="ca-pub-1938876328599253">
+  <link rel="canonical" href="https://career-craft.dev/privacy-policy.html">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>Privacy Policy | Career Craft — Free ATS Resume Builder</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
-    body{
-      font-family:Arial,sans-serif;
-      max-width:900px;
-      margin:auto;
-      padding:40px 20px;
-      line-height:1.7;
-      color:#222;
-      background:#f7f7f7;
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,sans-serif;background:#f0f2f5;color:#222;display:flex;flex-direction:column;min-height:100vh}
+
+    /* NAV */
+    .site-nav{background:#1a1a2e;height:52px;display:flex;align-items:center;padding:0 20px;position:sticky;top:0;z-index:1000;gap:20px;flex-shrink:0}
+    .nav-brand{color:#fff;font-weight:800;font-size:16px;text-decoration:none;letter-spacing:.4px;white-space:nowrap;margin-right:10px}
+    .nav-brand span{color:#3a6df0}
+    .nav-links{display:flex;list-style:none;gap:4px;align-items:center;flex:1}
+    .nav-links a{color:#ccd;text-decoration:none;font-size:13px;padding:6px 10px;border-radius:5px;display:block;white-space:nowrap;transition:background .15s,color .15s}
+    .nav-links a:hover,.nav-links a.active{background:#2d3a8c;color:#fff}
+    .nav-links .cta-link a{background:#3a6df0;color:#fff;font-weight:700}
+    .nav-links .cta-link a:hover{background:#2d5cd8}
+    .has-dropdown{position:relative}
+    .has-dropdown>a::after{content:" ▾";font-size:10px}
+    .dropdown{display:none;position:absolute;top:calc(100% + 6px);left:0;background:#1a1a2e;border:1px solid #2d3a8c;border-radius:7px;min-width:230px;padding:6px;list-style:none;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+    .has-dropdown:hover .dropdown{display:block}
+    .dropdown li a{font-size:12px;padding:8px 10px;border-radius:5px;display:block;color:#ccd}
+    .dropdown li a:hover{background:#2d3a8c;color:#fff}
+    .nav-toggle{display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;margin-left:auto}
+
+    /* MAIN */
+    .page-wrap{max-width:860px;margin:0 auto;padding:36px 20px;flex:1;width:100%;display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start}
+
+    .page-header{margin-bottom:22px}
+    .page-header h1{font-size:28px;font-weight:800;color:#1a1a2e;margin-bottom:8px}
+    .page-header p{font-size:13px;color:#888}
+
+    /* CONTENT CARD */
+    .content-card{background:#fff;border-radius:10px;padding:28px;box-shadow:0 2px 10px rgba(0,0,0,.07);margin-bottom:0}
+
+    .policy-section{margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid #f0f2f5}
+    .policy-section:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+
+    .policy-section h2{
+      font-size:14px;font-weight:700;color:#1a1a2e;
+      margin-bottom:10px;display:flex;align-items:center;gap:8px
+    }
+    .policy-section h2 i{color:#3a6df0;font-size:16px}
+    .policy-section p{font-size:13px;line-height:1.8;color:#444;margin-bottom:8px}
+    .policy-section p:last-child{margin-bottom:0}
+    .policy-section a{color:#3a6df0;text-decoration:none}
+    .policy-section a:hover{text-decoration:underline}
+    .policy-section ul{font-size:13px;line-height:1.9;color:#444;padding-left:18px}
+
+    .updated-badge{
+      display:inline-block;background:#f0f4ff;color:#3a6df0;
+      font-size:11px;font-weight:700;padding:4px 10px;
+      border-radius:20px;border:1px solid #d0dcff;margin-bottom:20px
     }
 
-    .box{
-      background:#fff;
-      padding:30px;
-      border-radius:10px;
-      box-shadow:0 2px 10px rgba(0,0,0,.08);
-    }
+    /* SIDE */
+    .side-col{display:flex;flex-direction:column;gap:16px}
 
-    h1,h2{
-      margin-bottom:10px;
-      color:#1e3a5f;
-    }
+    .toc-card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+    .toc-card h3{font-size:12px;font-weight:700;color:#3a6df0;text-transform:uppercase;letter-spacing:.4px;margin-bottom:12px}
+    .toc-card a{display:flex;align-items:center;gap:6px;color:#444;text-decoration:none;font-size:12px;padding:6px 0;border-bottom:1px solid #f0f2f5;transition:color .15s}
+    .toc-card a:last-child{border-bottom:none;padding-bottom:0}
+    .toc-card a:hover{color:#3a6df0}
+    .toc-card a i{color:#3a6df0;font-size:13px}
 
-    p{
-      margin-bottom:18px;
-    }
+    .blog-links-card{background:#1a1a2e;border-radius:10px;padding:20px}
+    .blog-links-card h3{font-size:12px;font-weight:700;color:#3a6df0;text-transform:uppercase;letter-spacing:.4px;margin-bottom:12px}
+    .blog-links-card a{display:block;color:#aab;text-decoration:none;font-size:12px;padding:7px 0;border-bottom:1px solid #2d3a5a;transition:color .15s;line-height:1.4}
+    .blog-links-card a:last-child{border-bottom:none;padding-bottom:0}
+    .blog-links-card a:hover{color:#fff}
+    .blog-links-card a i{margin-right:6px;color:#3a6df0}
 
-    a{
-      color:#1e3a5f;
+    /* AD */
+    .ad-wrap{background:#fff;padding:10px;text-align:center;border-bottom:1px solid #ddd}
+
+    /* FOOTER */
+    footer{background:#1a1a2e;padding:20px 24px;flex-shrink:0}
+    .footer-inner{max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-start}
+    .footer-brand{color:#fff;font-weight:800;font-size:15px;text-decoration:none}
+    .footer-brand span{color:#3a6df0}
+    .footer-copy{font-size:11px;color:#889;margin-top:4px}
+    .footer-col{display:flex;flex-direction:column;gap:6px}
+    .footer-col-title{font-size:11px;font-weight:700;color:#3a6df0;text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px}
+    .footer-col a{color:#aab;text-decoration:none;font-size:12px;transition:color .15s}
+    .footer-col a:hover{color:#fff}
+
+    @media(max-width:760px){
+      .page-wrap{grid-template-columns:1fr}
+      .nav-links{display:none;flex-direction:column;position:absolute;top:52px;left:0;right:0;background:#1a1a2e;padding:10px;gap:2px;border-bottom:1px solid #2d3a8c}
+      .nav-links.open{display:flex}
+      .nav-toggle{display:block}
+      .has-dropdown:hover .dropdown{display:none}
+      .has-dropdown.open .dropdown{display:block;position:static;border:none;padding-left:10px;box-shadow:none}
+      .site-nav{position:relative}
+      .footer-inner{flex-direction:column;gap:14px}
     }
   </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1938876328599253" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<div class="box">
-  <h1>Privacy Policy</h1>
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Career<span>Craft</span></a>
+    <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/index.html">Home</a></li>
+      <li class="cta-link"><a href="/cvbuild.html"><i class="bi bi-file-earmark-person"></i> Build CV</a></li>
+      <li class="has-dropdown" id="blogDrop">
+        <a href="#" onclick="event.preventDefault();document.getElementById('blogDrop').classList.toggle('open')">Blog</a>
+        <ul class="dropdown">
+          <li><a href="/blog/ats-friendly-resume-2026.html">ATS Friendly Resume 2026</a></li>
+          <li><a href="/blog/fresh-graduate-cv-format-2026.html">Fresh Graduate CV Format 2026</a></li>
+          <li><a href="/blog/resume-mistakes-2026.html">Resume Mistakes to Avoid 2026</a></li>
+        </ul>
+      </li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+      <li><a href="/privacy-policy.html" class="active">Privacy</a></li>
+    </ul>
+  </nav>
 
-  <p>
-    ATS CV Builder respects your privacy. This website does not collect
-    personal information unless voluntarily provided by users.
-  </p>
+  <!-- TOP AD -->
+  <div class="ad-wrap">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1938876328599253" data-ad-slot="4470702391" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+  </div>
 
-  <h2>Information Collection</h2>
-  <p>
-    We may collect basic information such as name, email address,
-    and resume content only for resume generation purposes.
-  </p>
+  <!-- CONTENT -->
+  <div class="page-wrap">
 
-  <h2>Cookies</h2>
-  <p>
-    Google AdSense may use cookies to serve personalized ads.
-    Third-party vendors including Google use cookies to serve ads
-    based on user visits to this website.
-  </p>
+    <div>
+      <div class="page-header">
+        <h1>Privacy Policy</h1>
+        <p>Last updated: January 2026</p>
+      </div>
 
-  <h2>Google AdSense</h2>
-  <p>
-    Google may use advertising cookies to provide relevant ads.
-    Users may opt out of personalized advertising by visiting
-    Google Ads Settings.
-  </p>
+      <div class="content-card">
 
-  <h2>Data Security</h2>
-  <p>
-    We take reasonable steps to protect user information.
-  </p>
+        <div class="policy-section">
+          <h2><i class="bi bi-shield-check"></i> Overview</h2>
+          <p>Career Craft respects your privacy. This website does not collect personal information unless voluntarily provided by you. We are committed to being transparent about how this site works and what data may be involved.</p>
+          <p>By using Career Craft, you agree to the practices described in this policy.</p>
+        </div>
 
-  <h2>External Links</h2>
-  <p>
-    Our website may contain links to third-party websites.
-    We are not responsible for their privacy practices.
-  </p>
+        <div class="policy-section">
+          <h2><i class="bi bi-database"></i> Information We Collect</h2>
+          <p>Career Craft operates entirely in your browser. Resume data you enter is not sent to any server and is not stored by us. All processing happens locally on your device.</p>
+          <p>If you use the Contact form, we collect your name, email address, and message content solely to respond to your inquiry. This information is processed via Formspree and is not shared with third parties.</p>
+        </div>
 
-  <h2>Contact</h2>
-  <p>
-    For questions regarding this Privacy Policy, contact us at:
-    your@email.com
-  </p>
-</div>
+        <div class="policy-section">
+          <h2><i class="bi bi-cookie"></i> Cookies</h2>
+          <p>Career Craft itself does not set cookies. However, Google AdSense, which serves advertisements on this site, may use cookies to personalize ads based on your browsing history and interests.</p>
+          <p>These cookies are set by Google, not by Career Craft. You can manage or disable them through your browser settings or by visiting <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google Ads Settings</a>.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2><i class="bi bi-google"></i> Google AdSense</h2>
+          <p>This site uses Google AdSense to display advertisements. Google, as a third-party vendor, uses cookies to serve ads based on your prior visits to this and other websites.</p>
+          <ul>
+            <li>Google's use of advertising cookies enables it to serve ads based on your visit history.</li>
+            <li>You may opt out of personalized advertising at <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>.</li>
+            <li>You may also opt out via <a href="https://www.aboutads.info" target="_blank" rel="noopener">aboutads.info</a>.</li>
+          </ul>
+        </div>
+
+        <div class="policy-section">
+          <h2><i class="bi bi-lock"></i> Data Security</h2>
+          <p>Since resume data is processed entirely in your browser and never transmitted to our servers, there is no server-side storage risk for your CV content. We take reasonable precautions to protect any contact form submissions.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2><i class="bi bi-box-arrow-up-right"></i> External Links</h2>
+          <p>Career Craft may contain links to third-party websites including blog resources and tools. We are not responsible for the privacy practices or content of those external sites. We encourage you to review their privacy policies before providing any personal information.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2><i class="bi bi-arrow-repeat"></i> Changes to This Policy</h2>
+          <p>We may update this Privacy Policy from time to time. Changes will be reflected on this page with an updated date. Continued use of the site after changes constitutes acceptance of the updated policy.</p>
+        </div>
+
+        <div class="policy-section">
+          <h2><i class="bi bi-envelope"></i> Contact</h2>
+          <p>For questions or concerns about this Privacy Policy, please reach us via the <a href="/contact.html">Contact page</a>.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SIDE -->
+    <div class="side-col">
+
+      <div class="toc-card">
+        <h3>Contents</h3>
+        <a href="#"><i class="bi bi-dot"></i> Overview</a>
+        <a href="#"><i class="bi bi-dot"></i> Information We Collect</a>
+        <a href="#"><i class="bi bi-dot"></i> Cookies</a>
+        <a href="#"><i class="bi bi-dot"></i> Google AdSense</a>
+        <a href="#"><i class="bi bi-dot"></i> Data Security</a>
+        <a href="#"><i class="bi bi-dot"></i> External Links</a>
+        <a href="#"><i class="bi bi-dot"></i> Changes to Policy</a>
+        <a href="#"><i class="bi bi-dot"></i> Contact</a>
+      </div>
+
+      <div class="toc-card">
+        <h3>Quick Links</h3>
+        <a href="/index.html"><i class="bi bi-house"></i> Home</a>
+        <a href="/cvbuild.html"><i class="bi bi-file-earmark-person"></i> Build Your CV</a>
+        <a href="/about.html"><i class="bi bi-info-circle"></i> About Us</a>
+        <a href="/contact.html"><i class="bi bi-envelope"></i> Contact Us</a>
+      </div>
+
+      <div class="blog-links-card">
+        <h3>Helpful Reads</h3>
+        <a href="/blog/ats-friendly-resume-2026.html"><i class="bi bi-arrow-right-circle"></i>ATS Friendly Resume 2026</a>
+        <a href="/blog/fresh-graduate-cv-format-2026.html"><i class="bi bi-arrow-right-circle"></i>Fresh Graduate CV Format 2026</a>
+        <a href="/blog/resume-mistakes-2026.html"><i class="bi bi-arrow-right-circle"></i>Resume Mistakes to Avoid 2026</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM AD -->
+  <div class="ad-wrap" style="border-top:1px solid #ddd;border-bottom:none">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1938876328599253" data-ad-slot="5334330145" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <a href="/" class="footer-brand">Career<span>Craft</span></a>
+        <p class="footer-copy">© 2026 Career Craft — Free ATS Resume Builder</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Pages</div>
+        <a href="/index.html">Home</a>
+        <a href="/cvbuild.html">Build CV</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Blog</div>
+        <a href="/blog/ats-friendly-resume-2026.html">ATS Friendly Resume 2026</a>
+        <a href="/blog/fresh-graduate-cv-format-2026.html">Fresh Graduate CV Format 2026</a>
+        <a href="/blog/resume-mistakes-2026.html">Resume Mistakes to Avoid 2026</a>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
