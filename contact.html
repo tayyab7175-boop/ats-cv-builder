@@ -3,63 +3,313 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact - ATS CV Builder</title>
-
+  <meta name="description" content="Contact Career Craft — reach out with questions, feedback, or support requests about our free ATS resume builder.">
+  <meta name="robots" content="index, follow">
+  <meta name="google-adsense-account" content="ca-pub-1938876328599253">
+  <link rel="canonical" href="https://career-craft.dev/contact.html">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>Contact | Career Craft — Free ATS Resume Builder</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
-    body{
-      font-family:Arial,sans-serif;
-      background:#f5f5f5;
-      padding:40px 20px;
-    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,sans-serif;background:#f0f2f5;color:#222;display:flex;flex-direction:column;min-height:100vh}
 
-    .box{
-      max-width:700px;
-      margin:auto;
-      background:#fff;
-      padding:30px;
-      border-radius:10px;
-      box-shadow:0 2px 10px rgba(0,0,0,.08);
-    }
+    /* NAV */
+    .site-nav{background:#1a1a2e;height:52px;display:flex;align-items:center;padding:0 20px;position:sticky;top:0;z-index:1000;gap:20px;flex-shrink:0}
+    .nav-brand{color:#fff;font-weight:800;font-size:16px;text-decoration:none;letter-spacing:.4px;white-space:nowrap;margin-right:10px}
+    .nav-brand span{color:#3a6df0}
+    .nav-links{display:flex;list-style:none;gap:4px;align-items:center;flex:1}
+    .nav-links a{color:#ccd;text-decoration:none;font-size:13px;padding:6px 10px;border-radius:5px;display:block;white-space:nowrap;transition:background .15s,color .15s}
+    .nav-links a:hover,.nav-links a.active{background:#2d3a8c;color:#fff}
+    .nav-links .cta-link a{background:#3a6df0;color:#fff;font-weight:700}
+    .nav-links .cta-link a:hover{background:#2d5cd8}
+    .has-dropdown{position:relative}
+    .has-dropdown>a::after{content:" ▾";font-size:10px}
+    .dropdown{display:none;position:absolute;top:calc(100% + 6px);left:0;background:#1a1a2e;border:1px solid #2d3a8c;border-radius:7px;min-width:230px;padding:6px;list-style:none;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+    .has-dropdown:hover .dropdown{display:block}
+    .dropdown li a{font-size:12px;padding:8px 10px;border-radius:5px;display:block;color:#ccd}
+    .dropdown li a:hover{background:#2d3a8c;color:#fff}
+    .nav-toggle{display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;margin-left:auto}
 
-    h1{
-      margin-bottom:20px;
-      color:#1e3a5f;
-    }
+    /* MAIN */
+    .page-wrap{max-width:860px;margin:0 auto;padding:36px 20px;flex:1;width:100%;display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start}
 
-    input,textarea{
-      width:100%;
-      padding:12px;
-      margin-bottom:15px;
-      border:1px solid #ccc;
+    .page-header{margin-bottom:22px}
+    .page-header h1{font-size:28px;font-weight:800;color:#1a1a2e;margin-bottom:8px}
+    .page-header p{font-size:14px;color:#666;line-height:1.6}
+
+    /* FORM CARD */
+    .form-card{background:#fff;border-radius:10px;padding:28px;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+    .form-card h2{font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid #e8eaf0}
+    .form-group{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+    .form-group label{font-size:11px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.3px}
+    .form-group input,
+    .form-group textarea,
+    .form-group select{
+      border:1px solid #dde1e7;
       border-radius:6px;
-      font-size:14px;
+      padding:10px 12px;
+      font-size:13px;
+      color:#222;
+      font-family:Arial,sans-serif;
+      outline:none;
+      transition:border-color .15s;
+      width:100%;
     }
-
-    button{
-      background:#1e3a5f;
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus{border-color:#3a6df0;box-shadow:0 0 0 3px rgba(58,109,240,.08)}
+    .form-group textarea{resize:vertical;min-height:120px}
+    .btn-submit{
+      background:#3a6df0;
       color:#fff;
       border:none;
-      padding:12px 20px;
-      border-radius:6px;
+      padding:11px 24px;
+      border-radius:7px;
+      font-size:13px;
+      font-weight:700;
       cursor:pointer;
+      width:100%;
+      transition:background .15s;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
+    .btn-submit:hover{background:#2d5cd8}
+
+    .success-msg{
+      display:none;
+      background:#f0fff4;
+      border:1px solid #68d391;
+      border-radius:8px;
+      padding:14px 16px;
+      font-size:13px;
+      color:#276749;
+      margin-top:14px;
+      text-align:center;
+    }
+
+    /* SIDE INFO */
+    .side-col{display:flex;flex-direction:column;gap:16px}
+    .info-card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+    .info-card h3{font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e8eaf0}
+    .info-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px}
+    .info-item:last-child{margin-bottom:0}
+    .info-item i{font-size:16px;color:#3a6df0;margin-top:2px;flex-shrink:0}
+    .info-item div strong{font-size:12px;font-weight:700;color:#1a1a2e;display:block;margin-bottom:2px}
+    .info-item div span{font-size:12px;color:#555;line-height:1.5}
+
+    .blog-links-card{background:#1a1a2e;border-radius:10px;padding:20px}
+    .blog-links-card h3{font-size:13px;font-weight:700;color:#3a6df0;margin-bottom:12px;text-transform:uppercase;letter-spacing:.4px}
+    .blog-links-card a{display:block;color:#aab;text-decoration:none;font-size:12px;padding:7px 0;border-bottom:1px solid #2d3a5a;transition:color .15s;line-height:1.4}
+    .blog-links-card a:last-child{border-bottom:none;padding-bottom:0}
+    .blog-links-card a:hover{color:#fff}
+    .blog-links-card a i{margin-right:6px;color:#3a6df0}
+
+    /* AD */
+    .ad-wrap{background:#fff;padding:10px;text-align:center;border-bottom:1px solid #ddd}
+
+    /* FOOTER */
+    footer{background:#1a1a2e;padding:20px 24px;flex-shrink:0}
+    .footer-inner{max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-start}
+    .footer-brand{color:#fff;font-weight:800;font-size:15px;text-decoration:none}
+    .footer-brand span{color:#3a6df0}
+    .footer-copy{font-size:11px;color:#889;margin-top:4px}
+    .footer-col{display:flex;flex-direction:column;gap:6px}
+    .footer-col-title{font-size:11px;font-weight:700;color:#3a6df0;text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px}
+    .footer-col a{color:#aab;text-decoration:none;font-size:12px;transition:color .15s}
+    .footer-col a:hover{color:#fff}
+
+    @media(max-width:760px){
+      .page-wrap{grid-template-columns:1fr}
+      .nav-links{display:none;flex-direction:column;position:absolute;top:52px;left:0;right:0;background:#1a1a2e;padding:10px;gap:2px;border-bottom:1px solid #2d3a8c}
+      .nav-links.open{display:flex}
+      .nav-toggle{display:block}
+      .has-dropdown:hover .dropdown{display:none}
+      .has-dropdown.open .dropdown{display:block;position:static;border:none;padding-left:10px;box-shadow:none}
+      .site-nav{position:relative}
+      .footer-inner{flex-direction:column;gap:14px}
     }
   </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1938876328599253" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<div class="box">
-  <h1>Contact Us</h1>
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Career<span>Craft</span></a>
+    <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/index.html">Home</a></li>
+      <li class="cta-link"><a href="/cvbuild.html"><i class="bi bi-file-earmark-person"></i> Build CV</a></li>
+      <li class="has-dropdown" id="blogDrop">
+        <a href="#" onclick="event.preventDefault();document.getElementById('blogDrop').classList.toggle('open')">Blog</a>
+        <ul class="dropdown">
+          <li><a href="/blog/ats-friendly-resume-2026.html">ATS Friendly Resume 2026</a></li>
+          <li><a href="/blog/fresh-graduate-cv-format-2026.html">Fresh Graduate CV Format 2026</a></li>
+          <li><a href="/blog/resume-mistakes-2026.html">Resume Mistakes to Avoid 2026</a></li>
+        </ul>
+      </li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html" class="active">Contact</a></li>
+      <li><a href="/privacy-policy.html">Privacy</a></li>
+    </ul>
+  </nav>
 
-  <form>
-    <input type="text" placeholder="Your Name" required>
+  <!-- TOP AD -->
+  <div class="ad-wrap">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1938876328599253" data-ad-slot="4470702391" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+  </div>
 
-    <input type="email" placeholder="Your Email" required>
+  <!-- CONTENT -->
+  <div class="page-wrap">
 
-    <textarea rows="6" placeholder="Your Message"></textarea>
+    <div>
+      <div class="page-header">
+        <h1>Contact Us</h1>
+        <p>Have a question, feedback, or issue? Send us a message and we will get back to you.</p>
+      </div>
 
-    <button type="submit">Send Message</button>
-  </form>
-</div>
+      <div class="form-card">
+        <h2><i class="bi bi-envelope" style="color:#3a6df0;margin-right:8px"></i>Send a Message</h2>
 
+        <!-- Formspree — apna endpoint lagao: https://formspree.io/f/YOUR_ID -->
+        <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" name="name" placeholder="Ahmad Hassan" required>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="ahmad@example.com" required>
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <select name="subject">
+              <option value="">Select a topic</option>
+              <option>General Question</option>
+              <option>Bug Report</option>
+              <option>Feature Request</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea name="message" placeholder="Write your message here..." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">
+            <i class="bi bi-send"></i> Send Message
+          </button>
+        </form>
+
+        <div class="success-msg" id="successMsg">
+          <i class="bi bi-check-circle-fill"></i> Message sent! We will reply within 1–2 business days.
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDE -->
+    <div class="side-col">
+      <div class="info-card">
+        <h3>Get In Touch</h3>
+        <div class="info-item">
+          <i class="bi bi-clock"></i>
+          <div>
+            <strong>Response Time</strong>
+            <span>We typically reply within 1–2 business days.</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="bi bi-shield-check"></i>
+          <div>
+            <strong>Privacy</strong>
+            <span>Your message is private. We never share your contact details.</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="bi bi-lightbulb"></i>
+          <div>
+            <strong>Feature Requests</strong>
+            <span>We love feedback. If you have an idea, we want to hear it.</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="bi bi-bug"></i>
+          <div>
+            <strong>Bug Reports</strong>
+            <span>Found something broken? Let us know and we will fix it fast.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-links-card">
+        <h3>Helpful Reads</h3>
+        <a href="/blog/ats-friendly-resume-2026.html"><i class="bi bi-arrow-right-circle"></i>ATS Friendly Resume 2026</a>
+        <a href="/blog/fresh-graduate-cv-format-2026.html"><i class="bi bi-arrow-right-circle"></i>Fresh Graduate CV Format 2026</a>
+        <a href="/blog/resume-mistakes-2026.html"><i class="bi bi-arrow-right-circle"></i>Resume Mistakes to Avoid 2026</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM AD -->
+  <div class="ad-wrap" style="border-top:1px solid #ddd;border-bottom:none">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1938876328599253" data-ad-slot="5334330145" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <a href="/" class="footer-brand">Career<span>Craft</span></a>
+        <p class="footer-copy">© 2026 Career Craft — Free ATS Resume Builder</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Pages</div>
+        <a href="/index.html">Home</a>
+        <a href="/cvbuild.html">Build CV</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Blog</div>
+        <a href="/blog/ats-friendly-resume-2026.html">ATS Friendly Resume 2026</a>
+        <a href="/blog/fresh-graduate-cv-format-2026.html">Fresh Graduate CV Format 2026</a>
+        <a href="/blog/resume-mistakes-2026.html">Resume Mistakes to Avoid 2026</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function handleSubmit(e){
+      e.preventDefault();
+      const form=document.getElementById('contactForm');
+      const btn=form.querySelector('.btn-submit');
+      btn.textContent='Sending...';
+      btn.disabled=true;
+      fetch(form.action,{
+        method:'POST',
+        body:new FormData(form),
+        headers:{Accept:'application/json'}
+      }).then(r=>{
+        if(r.ok){
+          form.style.display='none';
+          document.getElementById('successMsg').style.display='block';
+        } else {
+          btn.textContent='Send Message';
+          btn.disabled=false;
+          alert('Something went wrong. Please try again.');
+        }
+      }).catch(()=>{
+        btn.textContent='Send Message';
+        btn.disabled=false;
+        alert('Network error. Please try again.');
+      });
+    }
+  </script>
 </body>
 </html>
