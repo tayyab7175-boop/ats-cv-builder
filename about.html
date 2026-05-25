@@ -3,56 +3,220 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About - ATS CV Builder</title>
-
+  <meta name="description" content="About Career Craft — a free ATS resume builder helping job seekers create professional CVs instantly.">
+  <meta name="robots" content="index, follow">
+  <meta name="google-adsense-account" content="ca-pub-1938876328599253">
+  <link rel="canonical" href="https://career-craft.dev/about.html">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>About | Career Craft — Free ATS Resume Builder</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
-    body{
-      font-family:Arial,sans-serif;
-      background:#f5f5f5;
-      padding:40px 20px;
-    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,sans-serif;background:#f0f2f5;color:#222;display:flex;flex-direction:column;min-height:100vh}
 
-    .box{
-      max-width:900px;
-      margin:auto;
-      background:#fff;
-      padding:30px;
-      border-radius:10px;
-      line-height:1.8;
-      color:#222;
-      box-shadow:0 2px 10px rgba(0,0,0,.08);
-    }
+    /* NAV */
+    .site-nav{background:#1a1a2e;height:52px;display:flex;align-items:center;padding:0 20px;position:sticky;top:0;z-index:1000;gap:20px;flex-shrink:0}
+    .nav-brand{color:#fff;font-weight:800;font-size:16px;text-decoration:none;letter-spacing:.4px;white-space:nowrap;margin-right:10px}
+    .nav-brand span{color:#3a6df0}
+    .nav-links{display:flex;list-style:none;gap:4px;align-items:center;flex:1}
+    .nav-links a{color:#ccd;text-decoration:none;font-size:13px;padding:6px 10px;border-radius:5px;display:block;white-space:nowrap;transition:background .15s,color .15s}
+    .nav-links a:hover,.nav-links a.active{background:#2d3a8c;color:#fff}
+    .nav-links .cta-link a{background:#3a6df0;color:#fff;font-weight:700}
+    .nav-links .cta-link a:hover{background:#2d5cd8}
+    .has-dropdown{position:relative}
+    .has-dropdown>a::after{content:" ▾";font-size:10px}
+    .dropdown{display:none;position:absolute;top:calc(100% + 6px);left:0;background:#1a1a2e;border:1px solid #2d3a8c;border-radius:7px;min-width:230px;padding:6px;list-style:none;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+    .has-dropdown:hover .dropdown{display:block}
+    .dropdown li a{font-size:12px;padding:8px 10px;border-radius:5px;display:block;color:#ccd}
+    .dropdown li a:hover{background:#2d3a8c;color:#fff}
+    .nav-toggle{display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;margin-left:auto}
 
-    h1{
-      color:#1e3a5f;
-      margin-bottom:15px;
+    /* MAIN */
+    .page-wrap{max-width:860px;margin:0 auto;padding:36px 20px;flex:1;width:100%}
+
+    .page-header{margin-bottom:28px}
+    .page-header h1{font-size:28px;font-weight:800;color:#1a1a2e;margin-bottom:8px}
+    .page-header p{font-size:14px;color:#666;line-height:1.6}
+
+    .content-card{background:#fff;border-radius:10px;padding:28px;box-shadow:0 2px 10px rgba(0,0,0,.07);margin-bottom:20px}
+    .content-card h2{font-size:16px;font-weight:700;color:#1e3a5f;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e8eaf0}
+    .content-card p{font-size:13.5px;line-height:1.8;color:#333;margin-bottom:10px}
+    .content-card p:last-child{margin-bottom:0}
+    .content-card ul{font-size:13.5px;line-height:1.9;color:#333;padding-left:20px}
+
+    .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+    .feature-item{background:#f6f8ff;border:1px solid #e0e6ff;border-radius:8px;padding:14px 16px}
+    .feature-item i{font-size:18px;color:#3a6df0;margin-bottom:6px;display:block}
+    .feature-item strong{font-size:13px;color:#1a1a2e;display:block;margin-bottom:3px}
+    .feature-item span{font-size:12px;color:#555;line-height:1.5}
+
+    .cta-box{background:#1a1a2e;border-radius:10px;padding:24px 28px;text-align:center;margin-top:10px}
+    .cta-box p{color:#aab;font-size:13px;margin-bottom:14px}
+    .cta-box a{background:#3a6df0;color:#fff;text-decoration:none;padding:10px 24px;border-radius:7px;font-size:13px;font-weight:700;display:inline-block;transition:background .15s}
+    .cta-box a:hover{background:#2d5cd8}
+
+    /* AD */
+    .ad-wrap{background:#fff;padding:10px;text-align:center;border-bottom:1px solid #ddd}
+
+    /* FOOTER */
+    footer{background:#1a1a2e;padding:20px 24px;flex-shrink:0}
+    .footer-inner{max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-start}
+    .footer-brand{color:#fff;font-weight:800;font-size:15px;text-decoration:none}
+    .footer-brand span{color:#3a6df0}
+    .footer-copy{font-size:11px;color:#889;margin-top:4px}
+    .footer-col{display:flex;flex-direction:column;gap:6px}
+    .footer-col-title{font-size:11px;font-weight:700;color:#3a6df0;text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px}
+    .footer-col a{color:#aab;text-decoration:none;font-size:12px;transition:color .15s}
+    .footer-col a:hover{color:#fff}
+
+    @media(max-width:700px){
+      .feature-grid{grid-template-columns:1fr}
+      .nav-links{display:none;flex-direction:column;position:absolute;top:52px;left:0;right:0;background:#1a1a2e;padding:10px;gap:2px;border-bottom:1px solid #2d3a8c}
+      .nav-links.open{display:flex}
+      .nav-toggle{display:block}
+      .has-dropdown:hover .dropdown{display:none}
+      .has-dropdown.open .dropdown{display:block;position:static;border:none;padding-left:10px;box-shadow:none}
+      .site-nav{position:relative}
+      .footer-inner{flex-direction:column;gap:14px}
     }
   </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1938876328599253" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<div class="box">
-  <h1>About ATS CV Builder</h1>
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Career<span>Craft</span></a>
+    <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/index.html">Home</a></li>
+      <li class="cta-link"><a href="/cvbuild.html"><i class="bi bi-file-earmark-person"></i> Build CV</a></li>
+      <li class="has-dropdown" id="blogDrop">
+        <a href="#" onclick="event.preventDefault();document.getElementById('blogDrop').classList.toggle('open')">Blog</a>
+        <ul class="dropdown">
+          <li><a href="/blog/ats-friendly-resume-2026.html">ATS Friendly Resume 2026</a></li>
+          <li><a href="/blog/fresh-graduate-cv-format-2026.html">Fresh Graduate CV Format 2026</a></li>
+          <li><a href="/blog/resume-mistakes-2026.html">Resume Mistakes to Avoid 2026</a></li>
+        </ul>
+      </li>
+      <li><a href="/about.html" class="active">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+      <li><a href="/privacy-policy.html">Privacy</a></li>
+    </ul>
+  </nav>
 
-  <p>
-    ATS CV Builder is a free online resume and CV maker designed
-    to help job seekers create professional ATS-friendly resumes easily.
-  </p>
+  <!-- TOP AD -->
+  <div class="ad-wrap">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1938876328599253" data-ad-slot="4470702391" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+  </div>
 
-  <p>
-    Our mission is to provide a simple, fast, and modern resume builder
-    that works across all devices.
-  </p>
+  <!-- CONTENT -->
+  <div class="page-wrap">
 
-  <p>
-    Users can create resumes online and download them instantly as PDF.
-  </p>
+    <div class="page-header">
+      <h1>About Career Craft</h1>
+      <p>Learn more about what we built, why we built it, and who it's for.</p>
+    </div>
 
-  <p>
-    We continuously improve the platform to provide better resume
-    formatting and ATS optimization.
-  </p>
-</div>
+    <div class="content-card">
+      <h2>What is Career Craft?</h2>
+      <p>Career Craft is a free online ATS resume builder designed to help job seekers create professional, clean, and recruiter-ready CVs without any signup or payment.</p>
+      <p>We built this tool for students, fresh graduates, and working professionals who need a fast, reliable way to format their resume so it passes both automated screening systems and human review.</p>
+    </div>
+
+    <div class="content-card">
+      <h2>Our Mission</h2>
+      <p>Our mission is simple — give every job seeker access to a professional resume builder that works on any device, requires no account, and produces a clean PDF instantly.</p>
+      <p>We continuously improve the platform by adding new templates, ATS optimizations, and formatting improvements based on real hiring trends.</p>
+    </div>
+
+    <div class="content-card">
+      <h2>Why We Built This</h2>
+      <p>Most resume builders charge money, require signups, or produce poorly-formatted output that fails ATS filters. Career Craft exists to remove those barriers. Whether you are applying for your first job or switching careers, your resume should not be the reason you get rejected.</p>
+    </div>
+
+    <div class="content-card">
+      <h2>What You Get</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <i class="bi bi-file-earmark-check"></i>
+          <strong>ATS-Optimized Layout</strong>
+          <span>Clean structure that passes automated screening systems used by employers.</span>
+        </div>
+        <div class="feature-item">
+          <i class="bi bi-download"></i>
+          <strong>Instant PDF Download</strong>
+          <span>Export your resume as a professional PDF with one click, no watermark.</span>
+        </div>
+        <div class="feature-item">
+          <i class="bi bi-phone"></i>
+          <strong>Works on Any Device</strong>
+          <span>Build and preview your CV on mobile, tablet, or desktop.</span>
+        </div>
+        <div class="feature-item">
+          <i class="bi bi-person-x"></i>
+          <strong>No Signup Required</strong>
+          <span>Start building immediately. No account, no email, no payment needed.</span>
+        </div>
+        <div class="feature-item">
+          <i class="bi bi-palette"></i>
+          <strong>Multiple Themes</strong>
+          <span>Choose from 6 professional color themes to match your personal style.</span>
+        </div>
+        <div class="feature-item">
+          <i class="bi bi-journal-text"></i>
+          <strong>Complete Sections</strong>
+          <span>Experience, education, skills, projects, certifications, references, and more.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h2>Helpful Resources</h2>
+      <ul>
+        <li><a href="/blog/ats-friendly-resume-2026.html" style="color:#3a6df0">How to Write an ATS-Friendly Resume in 2026</a></li>
+        <li><a href="/blog/fresh-graduate-cv-format-2026.html" style="color:#3a6df0">Best CV Format for Fresh Graduates 2026</a></li>
+        <li><a href="/blog/resume-mistakes-2026.html" style="color:#3a6df0">Resume Mistakes That Get You Rejected in 2026</a></li>
+      </ul>
+    </div>
+
+    <div class="cta-box">
+      <p>Ready to build your professional ATS resume?</p>
+      <a href="/cvbuild.html"><i class="bi bi-file-earmark-person"></i> Build Your CV Now — Free</a>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM AD -->
+  <div class="ad-wrap" style="border-top:1px solid #ddd;border-bottom:none">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1938876328599253" data-ad-slot="5334330145" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <a href="/" class="footer-brand">Career<span>Craft</span></a>
+        <p class="footer-copy">© 2026 Career Craft — Free ATS Resume Builder</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Pages</div>
+        <a href="/index.html">Home</a>
+        <a href="/cvbuild.html">Build CV</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Blog</div>
+        <a href="/blog/ats-friendly-resume-2026.html">ATS Friendly Resume 2026</a>
+        <a href="/blog/fresh-graduate-cv-format-2026.html">Fresh Graduate CV Format 2026</a>
+        <a href="/blog/resume-mistakes-2026.html">Resume Mistakes to Avoid 2026</a>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
