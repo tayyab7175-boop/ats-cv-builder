@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free ATS Resume Builder & CV Maker. Create professional ATS-friendly resumes online and download PDF instantly.">
+<meta name="keywords" content="ATS CV Builder, Resume Builder, CV Maker, ATS Resume, Free Resume Builder">
+<meta name="author" content="ATS CV Builder">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:title" content="ATS CV Builder">
+<meta property="og:description" content="Create professional ATS-friendly resumes online for free.">
+<meta property="og:type" content="website">
+
+<!-- Adsense Verification -->
+<meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://career-craft.dev/">
+
+<!-- Favicon -->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>ATS CV Builder</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      min-height: 100vh
+    }
+
+    .app {
+      display: flex;
+      height: 100vh;
+      overflow: hidden
+    }
+
+    .panel {
+      width: 420px;
+      min-width: 320px;
+      background: #fff;
+      border-right: 1px solid #dde1e7;
+      overflow-y: auto;
+      flex-shrink: 0
+    }
+
+    .preview {
+      flex: 1;
+      background: #c8cdd6;
+      overflow-y: auto;
+      display: flex;
+      justify-content: center;
+      padding: 24px
+    }
+
+    .panel-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 10
+    }
+
+    .panel-header h5 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a2e
+    }
+
+    .panel-header span {
+      color: #3a6df0;
+      font-weight: 700
+    }
+
+    .btn-dl {
+      background: #1a1a2e;
+      color: #fff;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      font-weight: 600
+    }
+
+    .btn-dl:hover {
+      background: #2d3a8c
+    }
+
+    .section-card {
+      margin: 10px;
+      border: 1px solid #e8eaf0;
+      border-radius: 8px;
+      overflow: hidden
+    }
+
+    .section-title {
+      background: #f6f8ff;
+      padding: 10px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #3a6df0;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .section-body {
+      padding: 12px 14px
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px
+    }
+
+    .form-row.full {
+      grid-template-columns: 1fr
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 3px
+    }
+
+    label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: .3px
+    }
+
+    input,
+    textarea,
+    select {
+      border: 1px solid #dde1e7;
+      border-radius: 5px;
+      padding: 6px 9px;
+      font-size: 12px;
+      color: #222;
+      background: #fff;
+      outline: none;
+      font-family: Arial, sans-serif;
+      width: 100%
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #3a6df0
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px
+    }
+
+    .item-block {
+      border: 1px solid #e0e3ea;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 8px;
+      background: #fafbff;
+      position: relative
+    }
+
+    .btn-remove {
+      position: absolute;
+      top: 7px;
+      right: 8px;
+      background: none;
+      border: none;
+      color: #e53e3e;
+      font-size: 11px;
+      cursor: pointer;
+      font-weight: 700
+    }
+
+    .btn-add {
+      background: none;
+      border: 1px solid #3a6df0;
+      color: #3a6df0;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 11px;
+      cursor: pointer;
+      font-weight: 700
+    }
+
+    .btn-add:hover {
+      background: #f0f4ff
+    }
+
+    .theme-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center
+    }
+
+    .dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent
+    }
+
+    .dot.active {
+      border-color: #fff;
+      outline: 2px solid #3a6df0
+    }
+
+    /* CV PREVIEW */
+    /* .cv-page {
+      width: 210mm;
+      min-height: 297mm;
+      background: #fff;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #222;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, .15)
+    } */
+
+    .cv-page {
+  width: 210mm;
+  height: auto;
+  min-height: auto;
+  background: #fff;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #222;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, .15)
+}
+
+    .cv-header {
+      padding: 22px 28px 18px;
+      text-align: center
+    }
+
+    .cv-name {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      margin-bottom: 4px
+    }
+
+    .cv-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      opacity: .75;
+      margin-bottom: 10px
+    }
+
+    .cv-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      font-size: 10.5px;
+      opacity: .9
+    }
+
+    .cv-contacts span {
+      display: flex;
+      align-items: center;
+      gap: 3px
+    }
+
+    .cv-body {
+      padding: 15px 28px 20px
+    }
+
+    .cv-section {
+      margin-bottom: 14px
+    }
+
+    .cv-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+      border-bottom: 2px solid
+    }
+
+    .cv-exp-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 2px
+    }
+
+    .cv-exp-sub {
+      font-size: 11px;
+      color: #555;
+      margin-bottom: 3px
+    }
+
+    .cv-desc {
+      font-size: 11px;
+      color: #333;
+      white-space: pre-line;
+      line-height: 1.6
+    }
+
+    .cv-edu-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px
+    }
+
+    .cv-edu-deg {
+      font-size: 12px;
+      font-weight: 700
+    }
+
+    .cv-edu-sch {
+      font-size: 11px;
+      color: #555
+    }
+
+    .cv-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px
+    }
+
+    .cv-skill {
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      padding: 2px 8px;
+      font-size: 10.5px;
+      color: #333
+    }
+
+    .cv-proj-name {
+      font-size: 12px;
+      font-weight: 700
+    }
+
+    .cv-proj-stack {
+      font-size: 10.5px;
+      color: #666;
+      margin-bottom: 2px
+    }
+
+    .cv-proj-link {
+      font-size: 10.5px;
+      color: #1a6fc4;
+      margin-bottom: 2px;
+      word-break: break-all
+    }
+
+    .cv-cert-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11.5px;
+      margin-bottom: 4px
+    }
+
+    .cv-lang-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .cv-lang {
+      font-size: 11px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      padding: 2px 8px
+    }
+
+    .cv-award {
+      font-size: 11px;
+      margin-bottom: 3px
+    }
+
+    .cv-vol {
+      font-size: 11px;
+      margin-bottom: 5px
+    }
+
+    .cv-ref-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px
+    }
+
+    .cv-ref-card {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 8px;
+      font-size: 11px
+    }
+
+    @media print {
+  /* 1. Force browser to render background colors and layout themes */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Hide form panel and action buttons completely */
+  .panel, .btn-dl, .section-card, #themeDots, .panel-header {
+    display: none !important;
+  }
+  
+  /* Reset preview workspace for absolute text rendering */
+  body, .app, .preview {
+    background: #fff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+  
+  /* Enforce exact A4 printable boundaries */
+  .cv-page {
+    box-shadow: none !important;
+    width: 210mm !important;
+    min-height: 297mm !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    display: block !important;
+  }
+  
+  @page {
+    size: A4 portrait;
+    margin: 0mm;
+  }
+  .preview-wrapper{
+  background:#c8cdd6;
+}
+
+@media(max-width:900px){
+  .app{
+    flex-direction:column;
+    height:auto;
+  }
+
+  .panel{
+    width:100%;
+    border-right:none;
+    border-bottom:1px solid #ddd;
+  }
+
+  .preview{
+    padding:10px;
+  }
+
+  .cv-page{
+    width:100%;
+  }
+}
+  </style>
+</head>
+
+<body>
+  <script async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+  crossorigin="anonymous"></script>
+  <div style="text-align:center;background:#fff;padding:10px;border-bottom:1px solid #ddd">
+  <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+    data-ad-slot="1111111111"
+    data-ad-format="auto"
+    data-full-width-responsive="true"></ins>
+
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+  <div class="app">
+    <div class="panel">
+      <div class="panel-header">
+        <div>
+  <h1 style="font-size:18px;color:#1a1a2e;margin-bottom:2px">
+    Free ATS CV Builder
+  </h1>
+
+  <h5>
+    <span>CV</span> Builder
+  </h5>
+</div>
+        <button class="btn-dl" onclick="downloadPDF()">⬇ Download PDF</button>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">Color Theme</div>
+        <div class="section-body">
+          <div class="theme-dots" id="themeDots"></div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">Personal Info</div>
+        <div class="section-body">
+          <div class="form-row full">
+            <div class="form-group"><label>Full Name</label><input id="fullName" placeholder="Ahmad Hassan"
+                oninput="render()"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Job Title</label><input id="jobTitle" placeholder="Software Engineer"
+                oninput="render()"></div>
+            <div class="form-group"><label>Email</label><input id="email" placeholder="ahmad@example.com"
+                oninput="render()"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Phone</label><input id="phone" placeholder="+92 300 1234567"
+                oninput="render()"></div>
+            <div class="form-group"><label>Location</label><input id="location" placeholder="Rawalpindi, Pakistan"
+                oninput="render()"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>LinkedIn</label><input id="linkedin" placeholder="linkedin.com/in/username"
+                oninput="render()"></div>
+            <div class="form-group"><label>GitHub / Website</label><input id="website" placeholder="github.com/username"
+                oninput="render()"></div>
+          </div>
+          <div class="form-row full">
+            <div class="form-group"><label>Portfolio / Other Link</label><input id="portfolio"
+                placeholder="portfolio.dev/username" oninput="render()"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">Professional Summary</div>
+        <div class="section-body">
+          <div class="form-group"><label>Summary</label><textarea id="summary" rows="3"
+              placeholder="Results-driven engineer with 5+ years..." oninput="render()"></textarea></div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">Work Experience <button class="btn-add" onclick="addItem('exp')">+ Add</button></div>
+        <div class="section-body" id="expList"></div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">Education <button class="btn-add" onclick="addItem('edu')">+ Add</button></div>
+        <div class="section-body" id="eduList"></div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">Skills</div>
+        <div class="section-body">
+          <div class="form-group"><label>Skills (comma separated)</label><input id="skills"
+              placeholder="PHP, Laravel, Vue.js, MySQL, Git" oninput="render()"></div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">Projects <button class="btn-add" onclick="addItem('proj')">+ Add</button></div>
+        <div class="section-body" id="projList"></div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">Certifications <button class="btn-add" onclick="addItem('cert')">+ Add</button></div>
+        <div class="section-body" id="certList"></div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">Languages <button class="btn-add" onclick="addItem('lang')">+ Add</button></div>
+        <div class="section-body" id="langList"></div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">Awards & Achievements <button class="btn-add" onclick="addItem('award')">+
+            Add</button></div>
+        <div class="section-body" id="awardList"></div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">Volunteering <button class="btn-add" onclick="addItem('vol')">+ Add</button></div>
+        <div class="section-body" id="volList"></div>
+      </div>
+
+      <div class="section-card" style="margin-bottom:20px">
+        <div class="section-title">References <button class="btn-add" onclick="addItem('ref')">+ Add</button></div>
+        <div class="section-body" id="refList"></div>
+      </div>
+    </div>
+
+   <!-- =========================
+RIGHT SIDE PREVIEW KE NEECHE
+BOTTOM AD
+Find this:
+<div class="preview">
+Replace with this:
+========================= -->
+
+<div class="preview-wrapper" style="flex:1;display:flex;flex-direction:column;overflow:auto">
+  
+  <div class="preview">
+    <div id="cvPage" class="cv-page"></div>
+  </div>
+
+  <!-- Bottom Adsense -->
+  <div style="background:#fff;padding:15px;text-align:center">
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+      data-ad-slot="2222222222"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+</div>
+  </div>
+  <footer style="background:#fff;padding:15px;text-align:center;font-size:13px;color:#666;border-top:1px solid #ddd">
+  © 2026 ATS CV Builder — Free Online Resume Maker
+</footer>
+
+  <script>
+    const THEMES = {
+      navy: { h: '#1e3a5f', a: '#1e3a5f' },
+      teal: { h: '#0f6e56', a: '#0f6e56' },
+      plum: { h: '#6d3a7a', a: '#6d3a7a' },
+      slate: { h: '#2d3748', a: '#2d3748' },
+      brick: { h: '#8b3a2a', a: '#8b3a2a' },
+      indigo: { h: '#3a3fa0', a: '#3a3fa0' }
+    };
+    let theme = 'navy';
+
+    const data = {
+      exp: [{ title: '', co: '', loc: '', s: '', e: '', desc: '' }],
+      edu: [{ deg: '', sch: '', yr: '', gpa: '' }],
+      proj: [{ nm: '', stack: '', lnk: '', desc: '' }],
+      cert: [{ nm: '', iss: '', yr: '' }],
+      lang: [{ lang: '', level: '' }],
+      award: [{ title: '', org: '', yr: '', desc: '' }],
+      vol: [{ role: '', org: '', yr: '', desc: '' }],
+      ref: [{ name: '', title: '', co: '', email: '', phone: '' }]
+    };
+
+    function g(id) { return (document.getElementById(id) || {}).value || '' }
+
+    function buildItem(type, item, idx, arr) {
+      const rm = arr.length > 1 ? `<button class="btn-remove" onclick="removeItem('${type}',${idx})">✕ Remove</button>` : '';
+      if (type === 'exp') return `<div class="item-block">${rm}
+    <div class="form-row"><div class="form-group"><label>Job Title</label><input value="${esc(item.title)}" onchange="data.exp[${idx}].title=this.value;render()" placeholder="Software Developer"></div><div class="form-group"><label>Company</label><input value="${esc(item.co)}" onchange="data.exp[${idx}].co=this.value;render()" placeholder="Tech Co."></div></div>
+    <div class="form-row"><div class="form-group"><label>Start</label><input value="${esc(item.s)}" onchange="data.exp[${idx}].s=this.value;render()" placeholder="Jan 2022"></div><div class="form-group"><label>End</label><input value="${esc(item.e)}" onchange="data.exp[${idx}].e=this.value;render()" placeholder="Present"></div></div>
+    <div class="form-row full"><div class="form-group"><label>Location</label><input value="${esc(item.loc)}" onchange="data.exp[${idx}].loc=this.value;render()" placeholder="Lahore, Pakistan"></div></div>
+    <div class="form-row full"><div class="form-group"><label>Achievements (bullet points)</label><textarea onchange="data.exp[${idx}].desc=this.value;render()" rows="3" placeholder="• Built REST APIs&#10;• Improved performance by 40%">${esc(item.desc)}</textarea></div></div>
+  </div>`;
+      if (type === 'edu') return `<div class="item-block">${rm}
+    <div class="form-row"><div class="form-group"><label>Degree</label><input value="${esc(item.deg)}" onchange="data.edu[${idx}].deg=this.value;render()" placeholder="BS Computer Science"></div><div class="form-group"><label>Institution</label><input value="${esc(item.sch)}" onchange="data.edu[${idx}].sch=this.value;render()" placeholder="COMSATS University"></div></div>
+    <div class="form-row"><div class="form-group"><label>Year</label><input value="${esc(item.yr)}" onchange="data.edu[${idx}].yr=this.value;render()" placeholder="2024"></div><div class="form-group"><label>GPA (optional)</label><input value="${esc(item.gpa)}" onchange="data.edu[${idx}].gpa=this.value;render()" placeholder="3.8/4.0"></div></div>
+  </div>`;
+      if (type === 'proj') return `<div class="item-block">${rm}
+    <div class="form-row"><div class="form-group"><label>Project Name</label><input value="${esc(item.nm)}" onchange="data.proj[${idx}].nm=this.value;render()" placeholder="E-Commerce Platform"></div><div class="form-group"><label>Tech Stack</label><input value="${esc(item.stack)}" onchange="data.proj[${idx}].stack=this.value;render()" placeholder="Laravel, Vue.js"></div></div>
+    <div class="form-row full"><div class="form-group"><label>Link (optional)</label><input value="${esc(item.lnk)}" onchange="data.proj[${idx}].lnk=this.value;render()" placeholder="github.com/user/project"></div></div>
+    <div class="form-row full"><div class="form-group"><label>Description</label><textarea onchange="data.proj[${idx}].desc=this.value;render()" rows="2" placeholder="Full-stack platform with...">${esc(item.desc)}</textarea></div></div>
+  </div>`;
+      if (type === 'cert') return `<div class="item-block">${rm}
+    <div class="form-row"><div class="form-group"><label>Certification</label><input value="${esc(item.nm)}" onchange="data.cert[${idx}].nm=this.value;render()" placeholder="AWS Cloud Practitioner"></div><div class="form-group"><label>Issuer</label><input value="${esc(item.iss)}" onchange="data.cert[${idx}].iss=this.value;render()" placeholder="Amazon Web Services"></div></div>
+    <div class="form-row full"><div class="form-group"><label>Year</label><input value="${esc(item.yr)}" onchange="data.cert[${idx}].yr=this.value;render()" placeholder="2024"></div></div>
+  </div>`;
+      if (type === 'lang') return `<div class="item-block">${rm}
+    <div class="form-row"><div class="form-group"><label>Language</label><input value="${esc(item.lang)}" onchange="data.lang[${idx}].lang=this.value;render()" placeholder="Urdu"></div><div class="form-group"><label>Proficiency</label><input value="${esc(item.level)}" onchange="data.lang[${idx}].level=this.value;render()" placeholder="Native / Fluent / Intermediate"></div></div>
+  </div>`;
+      if (type === 'award') return `<div class="item-block">${rm}
+    <div class="form-row"><div class="form-group"><label>Award / Achievement</label><input value="${esc(item.title)}" onchange="data.award[${idx}].title=this.value;render()" placeholder="Best Developer 2023"></div><div class="form-group"><label>Organization</label><input value="${esc(item.org)}" onchange="data.award[${idx}].org=this.value;render()" placeholder="Company Name"></div></div>
+    <div class="form-row full"><div class="form-group"><label>Year & Description</label><textarea onchange="data.award[${idx}].desc=this.value;render()" rows="2" placeholder="2023 — Awarded for leading migration project...">${esc(item.desc)}</textarea></div></div>
+  </div>`;
+      if (type === 'vol') return `<div class="item-block">${rm}
+    <div class="form-row"><div class="form-group"><label>Role</label><input value="${esc(item.role)}" onchange="data.vol[${idx}].role=this.value;render()" placeholder="Mentor"></div><div class="form-group"><label>Organization</label><input value="${esc(item.org)}" onchange="data.vol[${idx}].org=this.value;render()" placeholder="NGO Name"></div></div>
+    <div class="form-row full"><div class="form-group"><label>Year & Description</label><textarea onchange="data.vol[${idx}].desc=this.value;render()" rows="2" placeholder="2022 — Mentored 20+ students...">${esc(item.desc)}</textarea></div></div>
+  </div>`;
+      if (type === 'ref') return `<div class="item-block">${rm}
+    <div class="form-row"><div class="form-group"><label>Name</label><input value="${esc(item.name)}" onchange="data.ref[${idx}].name=this.value;render()" placeholder="Mr. Ali Khan"></div><div class="form-group"><label>Job Title</label><input value="${esc(item.title)}" onchange="data.ref[${idx}].title=this.value;render()" placeholder="Engineering Manager"></div></div>
+    <div class="form-row"><div class="form-group"><label>Company</label><input value="${esc(item.co)}" onchange="data.ref[${idx}].co=this.value;render()" placeholder="ABC Corp"></div><div class="form-group"><label>Email</label><input value="${esc(item.email)}" onchange="data.ref[${idx}].email=this.value;render()" placeholder="ali@abc.com"></div></div>
+    <div class="form-row full"><div class="form-group"><label>Phone</label><input value="${esc(item.phone)}" onchange="data.ref[${idx}].phone=this.value;render()" placeholder="+92 333 1234567"></div></div>
+  </div>`;
+      return '';
+    }
+
+    function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') }
+
+    function addItem(type) { data[type].push(emptyItem(type)); refreshList(type); render() }
+    function removeItem(type, idx) { if (data[type].length > 1) { data[type].splice(idx, 1); refreshList(type); render() } }
+    function emptyItem(type) {
+      if (type === 'exp') return { title: '', co: '', loc: '', s: '', e: '', desc: '' };
+      if (type === 'edu') return { deg: '', sch: '', yr: '', gpa: '' };
+      if (type === 'proj') return { nm: '', stack: '', lnk: '', desc: '' };
+      if (type === 'cert') return { nm: '', iss: '', yr: '' };
+      if (type === 'lang') return { lang: '', level: '' };
+      if (type === 'award') return { title: '', org: '', yr: '', desc: '' };
+      if (type === 'vol') return { role: '', org: '', yr: '', desc: '' };
+      if (type === 'ref') return { name: '', title: '', co: '', email: '', phone: '' };
+    }
+
+    function refreshList(type) {
+      const map = { exp: 'expList', edu: 'eduList', proj: 'projList', cert: 'certList', lang: 'langList', award: 'awardList', vol: 'volList', ref: 'refList' };
+      document.getElementById(map[type]).innerHTML = data[type].map((item, i) => buildItem(type, item, i, data[type])).join('');
+    }
+
+    function cvSection(title, html, color) {
+      if (!html.trim()) return '';
+      return `<div class="cv-section">
+    <div class="cv-section-title" style="color:${color};border-color:${color}">${title}</div>
+    ${html}
+  </div>`;
+    }
+
+    function render() {
+      const th = THEMES[theme];
+      const name = g('fullName') || 'YOUR NAME';
+      const contacts = [];
+      if (g('email')) contacts.push(`<span><i class="bi bi-envelope-fill"></i> ${g('email')}</span>`);
+      if (g('phone')) contacts.push(`<span><i class="bi bi-telephone-fill"></i> ${g('phone')}</span>`);
+      if (g('location')) contacts.push(`<span><i class="bi bi-geo-alt-fill"></i> ${g('location')}</span>`);
+      if (g('linkedin')) contacts.push(`<span><i class="bi bi-linkedin"></i> ${g('linkedin')}</span>`);
+      if (g('website')) contacts.push(`<span><i class="bi bi-github"></i> ${g('website')}</span>`);
+      if (g('portfolio')) contacts.push(`<span><i class="bi bi-globe2"></i> ${g('portfolio')}</span>`);
+
+      let html = `<div class="cv-header" style="background:${th.h};color:#fff">
+    <div class="cv-name">${esc(name)}</div>
+    ${g('jobTitle') ? `<div class="cv-title">${esc(g('jobTitle'))}</div>` : ''}
+    <div class="cv-contacts">${contacts.join('')}</div>
+  </div><div class="cv-body">`;
+
+      if (g('summary')) html += cvSection('Professional Summary', `<p style="font-size:11.5px;color:#333;text-align:justify;line-height:1.65;white-space:pre-line">${esc(g('summary'))}</p>`, th.a);
+
+      const exps = data.exp.filter(e => e.title || e.co);
+      if (exps.length) {
+        let inner = '';
+        exps.forEach(e => {
+          inner += `<div style="margin-bottom:10px">
+        <div class="cv-exp-header"><span>${esc(e.title || 'Job Title')} <span style="font-weight:400;color:#555">at ${esc(e.co || 'Company')}</span></span><span style="font-size:11px;font-weight:400;color:#666">${esc(e.s)}${e.s && e.e ? ' – ' : ''}${esc(e.e)}</span></div>
+        ${e.loc ? `<div class="cv-exp-sub">${esc(e.loc)}</div>` : ''}
+        ${e.desc ? `<div class="cv-desc">${esc(e.desc)}</div>` : ''}
+      </div>`;
+        });
+        html += cvSection('Work Experience', inner, th.a);
+      }
+
+      const edus = data.edu.filter(e => e.deg || e.sch);
+      if (edus.length) {
+        let inner = '';
+        edus.forEach(e => {
+          inner += `<div class="cv-edu-row"><div><div class="cv-edu-deg">${esc(e.deg)}</div><div class="cv-edu-sch">${esc(e.sch)}${e.gpa ? ' · GPA: ' + esc(e.gpa) : ''}</div></div><div style="font-size:11.5px;color:#555">${esc(e.yr)}</div></div>`;
+        });
+        html += cvSection('Education', inner, th.a);
+      }
+
+      const skills = (g('skills') || '').split(',').map(s => s.trim()).filter(Boolean);
+      if (skills.length) html += cvSection('Skills', `<div class="cv-skills">${skills.map(s => `<span class="cv-skill">${esc(s)}</span>`).join('')}</div>`, th.a);
+
+      const projs = data.proj.filter(p => p.nm);
+      if (projs.length) {
+        let inner = '';
+        projs.forEach(p => {
+          inner += `<div style="margin-bottom:9px">
+        <div class="cv-proj-name">${esc(p.nm)} ${p.stack ? `<span style="font-weight:400;font-size:10.5px;color:#555">(${esc(p.stack)})</span>` : ''}</div>
+        ${p.lnk ? `<div class="cv-proj-link">${esc(p.lnk)}</div>` : ''}
+        ${p.desc ? `<div class="cv-desc">${esc(p.desc)}</div>` : ''}
+      </div>`;
+        });
+        html += cvSection('Projects', inner, th.a);
+      }
+
+      const certs = data.cert.filter(c => c.nm);
+      if (certs.length) {
+        let inner = '';
+        certs.forEach(c => {
+          inner += `<div class="cv-cert-row"><span><strong>${esc(c.nm)}</strong>${c.iss ? ' · ' + esc(c.iss) : ''}</span><span style="color:#555">${esc(c.yr)}</span></div>`;
+        });
+        html += cvSection('Certifications', inner, th.a);
+      }
+
+      const langs = data.lang.filter(l => l.lang);
+      if (langs.length) html += cvSection('Languages', `<div class="cv-lang-row">${langs.map(l => `<span class="cv-lang"><strong>${esc(l.lang)}</strong>${l.level ? ' — ' + esc(l.level) : ''}</span>`).join('')}</div>`, th.a);
+
+      const awards = data.award.filter(a => a.title);
+      if (awards.length) {
+        let inner = '';
+        awards.forEach(a => {
+          inner += `<div class="cv-award"><strong>${esc(a.title)}</strong>${a.org ? ' · ' + esc(a.org) : ''}${a.desc ? '<br><span style="color:#444;font-size:10.5px">' + esc(a.desc) + '</span>' : ''}</div>`;
+        });
+        html += cvSection('Awards & Achievements', inner, th.a);
+      }
+
+      const vols = data.vol.filter(v => v.role || v.org);
+      if (vols.length) {
+        let inner = '';
+        vols.forEach(v => {
+          inner += `<div class="cv-vol"><strong>${esc(v.role)}</strong>${v.org ? ' · ' + esc(v.org) : ''}<br>${v.desc ? `<span style="color:#444;font-size:10.5px">${esc(v.desc)}</span>` : ''}</div>`;
+        });
+        html += cvSection('Volunteering', inner, th.a);
+      }
+
+      const refs = data.ref.filter(r => r.name);
+      if (refs.length) {
+        let inner = '<div class="cv-ref-grid">';
+        refs.forEach(r => {
+          inner += `<div class="cv-ref-card"><strong>${esc(r.name)}</strong><br>${r.title ? esc(r.title) + '<br>' : ''}${r.co ? '<em>' + esc(r.co) + '</em><br>' : ''}${r.email ? esc(r.email) + '<br>' : ''}${r.phone ? esc(r.phone) : ''}</div>`;
+        });
+        inner += '</div>';
+        html += cvSection('References', inner, th.a);
+      }
+
+      html += '</div>';
+      document.getElementById('cvPage').innerHTML = html;
+    }
+
+    function initThemes() {
+      const dot = document.getElementById('themeDots');
+      Object.entries(THEMES).forEach(([k, v]) => {
+        const d = document.createElement('div');
+        d.className = 'dot' + (k === theme ? ' active' : '');
+        d.style.background = v.h;
+        d.title = k;
+        d.onclick = () => { theme = k; document.querySelectorAll('.dot').forEach(x => x.classList.remove('active')); d.classList.add('active'); render() };
+        dot.appendChild(d);
+      });
+    }
+
+    function initLists() { ['exp', 'edu', 'proj', 'cert', 'lang', 'award', 'vol', 'ref'].forEach(t => refreshList(t)) }
+
+//     async function downloadPDF() {
+//   const el = document.getElementById('cvPage');
+//   const name = g('fullName') || 'CV';
+//   const filename = name.replace(/\s+/g, '_') + '_CV.pdf';
+
+//   const oldMinHeight = el.style.minHeight;
+//   el.style.minHeight = 'auto';
+
+//   const opt = {
+//     margin: 0,
+//     filename,
+//     image: { type: 'jpeg', quality: 0.98 },
+//     html2canvas: {
+//       scale: 2,
+//       useCORS: true,
+//       logging: false,
+//       scrollY: 0,
+//       scrollX: 0
+//     },
+//     pagebreak: { mode: ['css', 'legacy'] },
+//     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+//   };
+
+//   await html2pdf().set(opt).from(el).save();
+
+//   el.style.minHeight = oldMinHeight;
+// }
+
+function downloadPDF() {
+  // 1. Browser ka native print command trigger karein
+  window.print();
+}
+
+    initThemes();
+    initLists();
+    render();
+  </script>
+</body>
+
+</html>
