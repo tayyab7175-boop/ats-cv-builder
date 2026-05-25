@@ -273,7 +273,7 @@
     }
 
     .cv-body {
-      padding: 4px 28px 20px
+      padding: 15px 28px 20px
     }
 
     .cv-section {
@@ -403,27 +403,45 @@
     }
 
     @media print {
+  /* 1. Force browser to render background colors and layout themes */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
 
-      .panel,
-      .btn-dl {
-        display: none !important
-      }
-
-      .preview {
-        background: #fff !important;
-        padding: 0 !important
-      }
-
-      .cv-page {
-        box-shadow: none !important;
-        width: 100% !important
-      }
-
-      @page {
-        size: A4;
-        margin: 0
-      }
-    }
+  /* Hide form panel and action buttons completely */
+  .panel, .btn-dl, .section-card, #themeDots, .panel-header {
+    display: none !important;
+  }
+  
+  /* Reset preview workspace for absolute text rendering */
+  body, .app, .preview {
+    background: #fff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+  
+  /* Enforce exact A4 printable boundaries */
+  .cv-page {
+    box-shadow: none !important;
+    width: 210mm !important;
+    min-height: 297mm !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    display: block !important;
+  }
+  
+  @page {
+    size: A4 portrait;
+    margin: 0mm;
+  }
+}
   </style>
 </head>
 
@@ -744,32 +762,37 @@
 
     function initLists() { ['exp', 'edu', 'proj', 'cert', 'lang', 'award', 'vol', 'ref'].forEach(t => refreshList(t)) }
 
-    async function downloadPDF() {
-  const el = document.getElementById('cvPage');
-  const name = g('fullName') || 'CV';
-  const filename = name.replace(/\s+/g, '_') + '_CV.pdf';
+//     async function downloadPDF() {
+//   const el = document.getElementById('cvPage');
+//   const name = g('fullName') || 'CV';
+//   const filename = name.replace(/\s+/g, '_') + '_CV.pdf';
 
-  const oldMinHeight = el.style.minHeight;
-  el.style.minHeight = 'auto';
+//   const oldMinHeight = el.style.minHeight;
+//   el.style.minHeight = 'auto';
 
-  const opt = {
-    margin: 0,
-    filename,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: {
-      scale: 2,
-      useCORS: true,
-      logging: false,
-      scrollY: 0,
-      scrollX: 0
-    },
-    pagebreak: { mode: ['css', 'legacy'] },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-  };
+//   const opt = {
+//     margin: 0,
+//     filename,
+//     image: { type: 'jpeg', quality: 0.98 },
+//     html2canvas: {
+//       scale: 2,
+//       useCORS: true,
+//       logging: false,
+//       scrollY: 0,
+//       scrollX: 0
+//     },
+//     pagebreak: { mode: ['css', 'legacy'] },
+//     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+//   };
 
-  await html2pdf().set(opt).from(el).save();
+//   await html2pdf().set(opt).from(el).save();
 
-  el.style.minHeight = oldMinHeight;
+//   el.style.minHeight = oldMinHeight;
+// }
+
+function downloadPDF() {
+  // 1. Browser ka native print command trigger karein
+  window.print();
 }
 
     initThemes();
