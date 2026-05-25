@@ -420,21 +420,27 @@
       font-size: 11px
     }
 
-    @media print {
-  /* 1. Force browser to render background colors and layout themes */
+  @media print {
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
     color-adjust: exact !important;
   }
 
-  /* Hide form panel and action buttons completely */
-  .panel, .btn-dl, .section-card, #themeDots, .panel-header {
+  .panel,
+  .btn-dl,
+  .section-card,
+  #themeDots,
+  .panel-header,
+  .ad-banner,
+  .adsbygoogle {
     display: none !important;
   }
-  
-  /* Reset preview workspace for absolute text rendering */
-  body, .app, .preview {
+
+  body,
+  .app,
+  .preview,
+  .preview-wrapper {
     background: #fff !important;
     padding: 0 !important;
     margin: 0 !important;
@@ -442,25 +448,30 @@
     overflow: visible !important;
     display: block !important;
   }
-  
-  /* Enforce exact A4 printable boundaries */
+
   .cv-page {
     box-shadow: none !important;
     width: 210mm !important;
-    min-height: 297mm !important;
+    height: auto !important;
+    min-height: auto !important;
     padding: 0 !important;
     margin: 0 !important;
-    page-break-after: avoid;
-    page-break-inside: avoid;
+    page-break-after: auto !important;
+    page-break-inside: auto !important;
     display: block !important;
   }
-  
+
+  .cv-section,
+  .cv-ref-card,
+  .cv-award,
+  .cv-vol {
+    page-break-inside: avoid !important;
+  }
+
   @page {
     size: A4 portrait;
-    margin: 0mm;
+    margin: 0;
   }
-  .preview-wrapper{
-  background:#c8cdd6;
 }
 
 @media(max-width:900px){
@@ -490,7 +501,7 @@
 </head>
 
 <body>
-  <div style="text-align:center;background:#fff;padding:10px;border-bottom:1px solid #ddd">
+  <div class="ad-banner ad-banner-top" style="text-align:center;background:#fff;padding:10px;border-bottom:1px solid #ddd">
   <ins class="adsbygoogle"
     style="display:block"
     data-ad-client="ca-pub-1938876328599253"
@@ -629,7 +640,7 @@ Replace with this:
   </div>
 
   <!-- Bottom Adsense -->
-  <div style="background:#fff;padding:15px;text-align:center">
+ <div class="ad-banner ad-banner-bottom" style="background:#fff;padding:15px;text-align:center">
     <ins class="adsbygoogle"
       style="display:block"
       data-ad-client="ca-pub-1938876328599253"
